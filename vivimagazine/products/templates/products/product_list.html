@@ -1,9 +1,17 @@
 {% extends "products/base.html" %}
-{% load static %}
-{% block title %} Listagem de produtos {% endblock %}
-{% block content %}
-    {% for product in product_list %}
-        <h3> {{ product.name }}  </h3>
-        <img src="{{ product.image1.url }}" width="200" height="auto" />
-    {% endfor %}
+{% block title %} 
+    Listagem de produtos 
+{% endblock %} 
+{% block content %} 
+    <div class="products-list center-align container">
+        {% for product in product_list %}
+            <div class="product hoverable">
+                <img class="product-img" src="{{ product.image1.url }}" />
+                <div class="info">
+                    <span class="product-name">{{ product.name }}</span>
+                    <span class="product-value">R$ {{ product.price|floatformat:2 }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>  
 {% endblock %}

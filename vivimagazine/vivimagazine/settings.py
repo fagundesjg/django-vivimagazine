@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'vivimagazine.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': Configs.DATABASE_NAME,
+        'USER': Configs.DATABASE_USER,
+        'PASSWORD': Configs.DATABASE_PASSWORD,
+        'HOST': Configs.DATABASE_HOST,
+        'PORT': Configs.DATABASE_PORT,
     }
 }
 
