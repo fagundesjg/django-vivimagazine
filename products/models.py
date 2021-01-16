@@ -4,7 +4,7 @@ from uuid import uuid4
 
 
 class Category(models.Model):
-    id_category = models.UUIDField(
+    id = models.UUIDField(
         primary_key=True, default=uuid4, editable=False)
     name = models.CharField(max_length=64)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -15,7 +15,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    id_product = models.UUIDField(
+    id = models.UUIDField(
         primary_key=True, default=uuid4, editable=False)
     name = models.CharField(max_length=64)
     price = models.FloatField()
@@ -24,6 +24,7 @@ class Product(models.Model):
     image2 = models.ImageField(upload_to="products", null=True, blank=True)
     image3 = models.ImageField(upload_to="products", null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    quant = models.IntegerField(default=0)
     gender = models.CharField(max_length=1,
                               choices=(("M", "Masculino"), ("F", "Feminino")), default="M")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
