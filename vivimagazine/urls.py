@@ -17,10 +17,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
 
 from . import settings
+from products.api.viewsets import ProductsViewSet, CategoriesViewSet
+
+route = routers.DefaultRouter()
+route.register(r"api/categories", CategoriesViewSet, basename="Categories")
+route.register(r"api/products", ProductsViewSet, basename="Products")
 
 urlpatterns = [
+    path('', include(route.urls)),
+    path(
+        "api/auth/token", obtain_auth_token, name="api_token_auth"
+    ),
     path('admin/', admin.site.urls),
     path('products/', include('products.urls')),
 ]

@@ -1,8 +1,11 @@
 from django.db import models
 from enum import Enum
+from uuid import uuid4
 
 
 class Category(models.Model):
+    id_category = models.UUIDField(
+        primary_key=True, default=uuid4, editable=False)
     name = models.CharField(max_length=64)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -12,7 +15,8 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-
+    id_product = models.UUIDField(
+        primary_key=True, default=uuid4, editable=False)
     name = models.CharField(max_length=64)
     price = models.FloatField()
     discount = models.IntegerField(null=True, blank=True)
