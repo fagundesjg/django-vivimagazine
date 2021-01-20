@@ -14,16 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 
 from . import settings
-from products.api.viewsets import ProductsViewSet, CategoriesViewSet
+from products.api.viewsets import ProductsViewSet, CategoriesViewSet, SubcategoriesViewSet
 
 route = routers.DefaultRouter()
+route.register(r"api/subcategories", SubcategoriesViewSet,
+               basename="SubCategories")
 route.register(r"api/categories", CategoriesViewSet, basename="Categories")
 route.register(r"api/products", ProductsViewSet, basename="Products")
 
@@ -33,7 +35,6 @@ urlpatterns = [
         "api/auth/token", obtain_auth_token, name="api_token_auth"
     ),
     path('admin/', admin.site.urls),
-    path('products/', include('products.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
