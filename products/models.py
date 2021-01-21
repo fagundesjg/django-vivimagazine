@@ -26,15 +26,6 @@ class Category(models.Model):
             "updated_at": self.updated_at
         }
 
-    # @property
-    # def subcategories(self):
-    #     data = SubCategory.objects.filter(category=self.id)
-    #     serialized = serializers.serialize('json', data)
-    #     parsed = []
-    #     for item in json.loads(serialized):
-    #         parsed.append(item["fields"])
-    #     return parsed
-
 
 class SubCategory(models.Model):
     class Meta:

@@ -10,8 +10,6 @@ class CategoriesSerializer(serializers.ModelSerializer):
 
 
 class SubCategoriesSerializer(serializers.ModelSerializer):
-    # category = CategoriesSerializer(many=False, read_only=True)
-
     class Meta:
         model = SubCategory
         fields = "__all__"
